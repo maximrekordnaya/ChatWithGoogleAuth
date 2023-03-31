@@ -1,0 +1,7 @@
+.max-height{
+    max-height: 700px;
+    overflow-y: auto;
+}
+.card{
+    max-width: 500px;
+}
