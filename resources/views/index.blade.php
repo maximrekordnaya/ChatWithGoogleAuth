@@ -16,21 +16,26 @@
         <h3 class="email">{{auth()->user()->email}}</h3>
         <hr>
     </div>
-    <div class="container">
+    <div class="container-fluid">
         <div id="app">
-{{--            <Index :user="{{auth()->user()}}"></Index>--}}
-            <chat-messages :user="{{auth()->user()}}"></chat-messages>
+            <div class="row">
+                <div class="col-2">
+                    <online-users></online-users>
+                </div>
+                <div class="col-10">
+                    <chat-messages :user="{{auth()->user()}}"></chat-messages>
 
-            <chat-form ></chat-form>
+                    <chat-form></chat-form>
+                </div>
+
+            </div>
         </div>
     </div>
 </div>
 
 
-
-
 </body>
-
+{{--попытка скролить сообщения в самый низ, перестало работать при использовании коспонентов--}}
 {{--<script>--}}
 {{--    var myDiv = document.getElementById("messages");--}}
 {{--    myDiv.scrollTop = myDiv.scrollHeight;--}}

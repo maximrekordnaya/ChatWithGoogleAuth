@@ -4,4 +4,12 @@
 }
 .card{
     max-width: 500px;
+
+}
+
+.online{
+    color: green;
+}
+.offline{
+    color:red;
 }

@@ -1,17 +1,17 @@
 <template>
     <div class="row d-flex max-height" id="messages">
-<!--        <div class="col-12">-->
-<!--            <div v-for="message in messages"-->
-<!--                 class="card w-100 bg-secondary text-white d-inline-block ps-4 pe-4 justify-content-center w-25 p-1 mb-3">-->
-<!--                <p class="m-0">Привет Lorem ipsum dolor sit amet, consectetur adipisicing elit. Eligendi numquam-->
-<!--                    veritatis voluptates. Deleniti enim, necessitatibus non odio recusandae soluta ullam.</p>-->
-<!--            </div>-->
-<!--        </div>-->
         <div v-for="message in messages">
             <div class="col-12 d-flex" :class="{'justify-content-end': message.user.id === user.id}">
                 <div
-                    class="card w-100 text-white d-inline-block ps-4 pe-4 justify-content-center w-25 p-1 mb-3" :class="{'bg-primary':  message.user.id === user.id, 'bg-secondary':message.user.id !== user.id}">
-                    <p class="m-0 d-flex justify-content-end">{{message.message}}</p>
+                    class="card w-100 text-white d-inline-block ps-4 pe-4 w-25 p-1 mb-3"
+                    :class="{'bg-primary':  message.user.id === user.id, 'bg-secondary':message.user.id !== user.id}">
+                    <p class="m-0" v-if="message.user.id !== user.id">
+                        <span>({{ message.user.name }}) - </span>
+                        {{ message.message }}
+                    </p>
+                    <p class="m-0" v-else>
+                        {{ message.message }}
+                    </p>
                 </div>
             </div>
         </div>
@@ -33,7 +33,11 @@ export default {
     setup() {
         const {messages, getMessages} = useChat()
 
-        onMounted(()=>getMessages())
+        onMounted(() => {
+            getMessages()
+
+        })
+
 
         Echo.private(`chat`)
             .listen('MessageSend', (e) => {
@@ -45,7 +49,8 @@ export default {
             });
 
         return {messages}
-    }
+    },
+
 }
 </script>
 
