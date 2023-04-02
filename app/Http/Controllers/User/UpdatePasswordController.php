@@ -13,10 +13,16 @@ class UpdatePasswordController extends Controller
     public function __invoke(UpdatePasswordRequest $request, User $user)
     {
         $data = $request->validated();
+        $password = $data['password_old'];
+        $hashedPassword = $user->password;
+        if(Hash::check($password, $hashedPassword)){
+            $user->update([
+                'password' => Hash::make($data['password']),
 
-        $user->update([
-            'password' => Hash::make($data['password']),
-        ]);
-        return redirect()->route('user.show', compact('user'))->with('successPass', 'Password updated successfully');
+            ]);
+            return redirect()->route('user.show', compact('user'))->with('successPass', 'Пароль обновлен');
+        }
+        return redirect()->route('user.show', compact('user'))->with('wrongPass', 'Заполните поля правильно');
+
     }
 }

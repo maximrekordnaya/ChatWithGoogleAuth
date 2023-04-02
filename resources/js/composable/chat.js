@@ -5,7 +5,7 @@ export default function useChat(){
     const errors = ref([])
 
     const getMessages = async () =>{
-        await axios.get('/messages')
+        await axios.get('/chat/messages')
             .then(res=>{
                 messages.value = res.data
             })
@@ -15,7 +15,7 @@ export default function useChat(){
         errors.value = [];
 
         try {
-            await axios.post('/send', form)
+            await axios.post('chat/send', form)
                 .then(res => {
                     messages.value.push(res.data)
                 })

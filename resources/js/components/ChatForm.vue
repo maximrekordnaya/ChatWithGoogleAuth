@@ -6,10 +6,10 @@
             </div>
         </div>
         <div class="col-10">
-            <input v-model="form.message" type="text" class="form-control mt-4">
+            <input v-model="form.message" @keyup.enter="sendMessage" type="text" class="form-control mt-4">
         </div>
         <div class="col-2 d-flex align-items-end">
-            <input @click.prevent="sendMessage" type="submit" class="btn btn-success form-control">
+            <input @click.prevent="sendMessage"  type="submit" class="btn btn-success form-control">
         </div>
 
     </div>

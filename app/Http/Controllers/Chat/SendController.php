@@ -14,9 +14,7 @@ class SendController extends Controller
         $message = $request->user()
             ->messages()
             ->create($request->validated());
-
         broadcast(new MessageSend($request->user(), $message));
-
         return $message;
     }
 }

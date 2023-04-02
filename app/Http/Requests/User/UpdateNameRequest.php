@@ -4,7 +4,7 @@ namespace App\Http\Requests\User;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateNameEmailRequest extends FormRequest
+class UpdateNameRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,7 +23,6 @@ class UpdateNameEmailRequest extends FormRequest
     {
         return [
             'name' => 'string|min:3',
-            'email' => 'email',
 
         ];
     }
@@ -31,7 +30,7 @@ class UpdateNameEmailRequest extends FormRequest
     {
         return [
             'name.min' => 'Имя должно имять минимум 3 символа',
-            'name.email' => 'Введите верный email',
+            'name.string' => 'Имя должно быть строкой'
         ];
     }
 }
