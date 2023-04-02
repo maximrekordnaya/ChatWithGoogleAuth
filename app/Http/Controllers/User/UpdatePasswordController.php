@@ -17,6 +17,6 @@ class UpdatePasswordController extends Controller
         $user->update([
             'password' => Hash::make($data['password']),
         ]);
-        return redirect()->route('user.show', compact('user'))->with('success', 'Password updated successfully');
+        return redirect()->route('user.show', compact('user'))->with('successPass', 'Password updated successfully');
     }
 }

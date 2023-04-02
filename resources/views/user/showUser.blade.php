@@ -51,9 +51,9 @@
             {{$message}}
         </div>
         @enderror
-        @if (session('success'))
+        @if (session('successPass'))
             <div class="alert alert-success mt-3">
-                {{ session('success') }}
+                {{ session('successPass') }}
             </div>
         @endif
 
