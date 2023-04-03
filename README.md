@@ -1,3 +1,31 @@
+TODO: добавить возможность войти используя код из email (если нет доступа к приложению) - занимаюсь этим
+
+Что можно добавить: 1. Личные сообщения для пользователей онлайн.
+                    2. Улучшить верстку, в том числе и страницы входа
+                    3. Забыл пароль
+                    
+
+Как запустить проект:
+    1. composer install
+    2. npm install
+    3. Создать env файл, сгенерироват ключ, изменить бд
+    4. В env изменить :
+        PUSHER_DRIVER=pusher
+        
+        PUSHER_APP_ID=1576530
+        PUSHER_APP_KEY=e50c3f97e6f22b198370
+        PUSHER_APP_SECRET=dc4dd86bcb9bc58620ec
+        PUSHER_HOST=
+        PUSHER_PORT=443
+        PUSHER_SCHEME=https
+        PUSHER_APP_CLUSTER=eu
+        
+     5. php artisan migrate
+     6. php artisan serve
+     7. vite - перейти по ссылке vite
+
+
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
 
 <p align="center">
