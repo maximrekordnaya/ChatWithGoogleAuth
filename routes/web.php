@@ -13,12 +13,12 @@ Route::group(['namespace' => 'App\Http\Controllers\Chat', 'middleware' => ['auth
     Route::get('/', IndexController::class)->name('chat.index');
     Route::get('/messages', MessagesController::class);
     Route::post('/send', SendController::class);
-
-
 });
+
 Route::group(['middleware' => ['auth', \App\Http\Middleware\OnlineUser::class]], function () {
     Route::get('/lastAct', OnlineUsersController::class);
 });
+
 
 Route::group(['namespace' => 'App\Http\Controllers\User', 'middleware' => ['auth'], 'prefix'=>'user'],function(){
     Route::get('/{user}', ShowController::class)->name('user.show');
@@ -26,7 +26,10 @@ Route::group(['namespace' => 'App\Http\Controllers\User', 'middleware' => ['auth
     Route::patch('/password/{user}', UpdatePasswordController::class)->name('user.update.pass');
 });
 
-
-//Auth::routes();
 Route::redirect('/', '/home');
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->middleware('auth')->name('home');
+
+//код восстановления
+Route::get('/recovery-code', function (){
+   return view('auth.two-factor-recovery-code');
+})->name('auth.recovery-code');

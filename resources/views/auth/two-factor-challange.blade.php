@@ -34,12 +34,12 @@
                                     <button type="submit" class="btn btn-primary">
                                         {{ __('Проверить') }}
                                     </button>
+                                    <a href="{{route('auth.recovery-code')}}" class="ms-3">У меня нет доступа к приложению</a>
                                 </div>
                             </div>
                         </form>
                     </div>
                 </div>
-
             </div>
         </div>
     </div>

@@ -69,9 +69,20 @@
                 @method('DELETE')
                 <span class="text-success">Двух факторная аутентификация включена</span>
                 <button type="submit" class="btn btn-danger">Выключить</button>
-            <p class="text-bg-danger mt-3 mb-3 text-center">ОТСКАНИРУЙТЕ QR-КОД В СВОЕМ ПРИЛОЖЕНИИ Google Authenticator</p>
+            <p class="text-bg-warning mt-3 mb-3 text-center">ОТСКАНИРУЙТЕ QR-КОД В СВОЕМ ПРИЛОЖЕНИИ Google Authenticator</p>
                 <div class="m-3">
                     {!! auth()->user()->twoFactorQrCodeSvg() !!}
+                </div>
+                <p class="text-bg-danger mt-3 mb-3 text-center">ВНИМАНИЕ! СОХРАНИТЕ СЕБЕ ЛЮБОЙ ИЗ КОДОВ. ЭТОТ КОД ВАМ ПОНАДОБИТСЯ ЕСЛИ У ВАС НЕ БУДЕТ ДОСТУПА К <br> Google Authenticator
+                <br> <span class="text-warning">КОД РАБОТАЕТ ОДИН РАЗ, ПРИ ЕГО ИСПОЛЬЗОВАНИИ НА ЭТОЙ СТРАНИЦЕ СОХРАНИТЕ СЕБЕ НОВЫЙ КОД</span>
+                </p>
+                <div>
+                    @foreach(json_decode(decrypt(auth()->user()->two_factor_recovery_codes)) as $code)
+                        <ul>
+                            <li>{{$code}}</li>
+                        </ul>
+                    @endforeach
+
                 </div>
             @else
                 <span class="text-danger">Двух факторная аутентификация не включена</span>
