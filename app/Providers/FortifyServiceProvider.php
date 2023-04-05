@@ -11,6 +11,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\ServiceProvider;
 use Laravel\Fortify\Fortify;
+use PhpParser\Node\Stmt\Foreach_;
 
 class FortifyServiceProvider extends ServiceProvider
 {
@@ -37,6 +38,12 @@ class FortifyServiceProvider extends ServiceProvider
         Fortify::loginView('auth.login');
 
         Fortify::twoFactorChallengeView('auth.two-factor-challange');
+
+        Fortify::requestPasswordResetLinkView('auth.forgot-password');
+
+        Fortify::resetPasswordView('auth.reset-password');
+
+
 
 
         RateLimiter::for('login', function (Request $request) {

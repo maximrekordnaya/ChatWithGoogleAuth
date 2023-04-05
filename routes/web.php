@@ -7,6 +7,7 @@ use App\Http\Controllers\OnlineUsersController;
 use App\Http\Controllers\User\ShowController;
 use App\Http\Controllers\User\UpdateNameController;
 use App\Http\Controllers\User\UpdatePasswordController;
+use App\Http\Middleware\CheckUser;
 use Illuminate\Support\Facades\Route;
 
 Route::group(['namespace' => 'App\Http\Controllers\Chat', 'middleware' => ['auth'], 'prefix'=>'chat'], function () {
@@ -21,7 +22,7 @@ Route::group(['middleware' => ['auth', \App\Http\Middleware\OnlineUser::class]],
 
 
 Route::group(['namespace' => 'App\Http\Controllers\User', 'middleware' => ['auth'], 'prefix'=>'user'],function(){
-    Route::get('/{user}', ShowController::class)->name('user.show');
+    Route::get('/{user}', ShowController::class)->name('user.show')->middleware(CheckUser::class);
     Route::patch('/{user}', UpdateNameController::class)->name('user.update.name-pass');
     Route::patch('/password/{user}', UpdatePasswordController::class)->name('user.update.pass');
 });

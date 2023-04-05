@@ -24,7 +24,8 @@
 
 
             <div class="text-end">
-                <a href="{{route('user.show', auth()->user()->id)}}"><button class="btn btn-warning">Личный кабинет</button></a>
+
+                <a href="{{route('user.show', auth()->user())}}"><button class="btn btn-warning">Личный кабинет</button></a>
                 <form class="d-inline-block" action="{{route('logout')}}" method="POST">
                     @csrf
                     <input type="submit" value="Вийти" class="btn btn-danger">
